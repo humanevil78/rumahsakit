@@ -1,14 +1,22 @@
 <?php
-    if(isset($_POST["submit"])){
-        $user = $_POST["user"];
-        $pass = $_POST["pass"];
+require_once '../_config/config.php';
 
-        if($user == "a" && $pass == "b"){
-            echo "login berhasil";
-        } else {
-            echo "login gagal";
-        }
+
+if (isset($_POST["submit"])) {
+
+    $user = trim(mysqli_real_escape_string($con, $_POST["user"]));
+    $pass = sha1(trim(mysqli_real_escape_string($con, $_POST["pass"])));
+
+    $query = "SELECT * FROM tuser WHERE username = '" . $user . "' AND userpass = '" . $pass . "'";
+    $sql_login = mysqli_query($con, $query) or die(mysqli_error($con));
+
+    if (mysqli_num_rows($sql_login) > 0) {
+        $_SESSION['user'] = $user;
+        echo "<script> window.location='" . baseUrl() . "';</script>";
+    } else {
+        $gagalLogin = true;
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +31,11 @@
     <title>Login - Rumah Sakit</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../_assets/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= baseUrl(); ?>/_assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-    <link href="../_assets/css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="../_assets/font-awesome/css/font-awesome.css">
+    <link href="<?= baseUrl(); ?>/_assets/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= baseUrl(); ?>/_assets/font-awesome/css/font-awesome.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
 </head>
@@ -36,6 +44,18 @@
     <div class="container">
         <form action="" method="post">
             <div class="row" style="margin-top: 200px;">
+                <div class="col-md-4"></div>
+                <div class="col-md-5">
+                    <?php if (isset($gagalLogin)) : ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Login gagal!</strong>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                 </div>
                 <div class="col-md-2">
@@ -53,21 +73,21 @@
                 <div class="col-md-2">
                     <button name="submit" type="submit" class="btn btn-primary">Login</button>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                 </div>
             </div>
         </form>
     </div>
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="<?= baseUrl(); ?>/js/jquery-1.10.2.js"></script>
+    <script src="<?= baseUrl(); ?>/js/bootstrap.js"></script>
 
     <!-- Page Specific Plugins -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="js/morris/chart-data-morris.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
+    <script src="<?= baseUrl(); ?>/js/morris/chart-data-morris.js"></script>
+    <script src="<?= baseUrl(); ?>/js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="<?= baseUrl(); ?>/js/tablesorter/tables.js"></script>
 
 </body>
 
