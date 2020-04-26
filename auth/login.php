@@ -1,6 +1,9 @@
 <?php
 require_once '../_config/config.php';
 
+if(isset($_SESSION['user'])){
+    echo "<script> window.location='" . baseUrl('dashboard') . "';</script>";
+}
 
 if (isset($_POST["submit"])) {
 
@@ -12,7 +15,7 @@ if (isset($_POST["submit"])) {
 
     if (mysqli_num_rows($sql_login) > 0) {
         $_SESSION['user'] = $user;
-        echo "<script> window.location='" . baseUrl() . "';</script>";
+        echo "<script> window.location='" . baseUrl('dashboard') . "';</script>";
     } else {
         $gagalLogin = true;
     }
