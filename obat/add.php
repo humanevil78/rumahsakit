@@ -25,7 +25,4 @@
         
     </form>
 </div>
-
-
-
 <?php include_once '../_footer.php'; ?>

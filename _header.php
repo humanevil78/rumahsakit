@@ -27,6 +27,8 @@ if (!(isset($_SESSION['user']))) {
     <link rel="stylesheet" href="<?= baseUrl('_assets/font-awesome/css/font-awesome.min.css'); ?>">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 </head>
 
 <body>
