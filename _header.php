@@ -21,17 +21,21 @@ if (!(isset($_SESSION['user']))) {
 
     <!-- Bootstrap core CSS -->
     <link href="<?= baseUrl('_assets/css/bootstrap.css'); ?>" rel="stylesheet">
+    <link href="<?= baseUrl('_assets/libs/datatables.min.css'); ?>" rel="stylesheet">
 
     <!-- Add custom CSS here -->
     <link href="<?= baseUrl('_assets/css/sb-admin.css'); ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= baseUrl('_assets/font-awesome/css/font-awesome.min.css'); ?>">
-    <!-- Page Specific CSS -->
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
 
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 </head>
 
 <body>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="<?= baseUrl('_assets/libs/datatables.min.js'); ?>"></script>
+    <script src="<?= baseUrl('_assets/js/bootstrap.js'); ?>"></script>
+
 
     <div id="wrapper">
 
